@@ -2,6 +2,12 @@
 instagram-explore
 =================
 
+.. image:: https://travis-ci.org/midnightSuyama/instagram-explore.svg?branch=master
+    :target: https://travis-ci.org/midnightSuyama/instagram-explore
+
+.. image:: https://badge.fury.io/py/instagram-explore.svg
+    :target: https://badge.fury.io/py/instagram-explore
+
 instagram scrapping module
 
 ------------
