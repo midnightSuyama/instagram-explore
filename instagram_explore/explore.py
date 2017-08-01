@@ -80,7 +80,7 @@ def media(media_code):
     
     try:
         res = requests.get(url, params=payload).json()
-        body = res['media']
+        body = res['graphql']['shortcode_media']
     except: raise
 
     return InstagramExploreResponse(data=body, cursor=None)
@@ -88,8 +88,8 @@ def media(media_code):
 
 def media_image(media_code):
     try:
-        body = media(media_code)
-        image = body['display_src']
+        body = media(media_code).data
+        image = body['display_url']
     except: raise
 
     return InstagramExploreResponse(data=image, cursor=None)
