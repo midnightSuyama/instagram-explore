@@ -12,8 +12,8 @@ def user(user_name, max_id=None):
     
     try:
         res = requests.get(url, params=payload).json()
-        body   = res['user']
-        cursor = res['user']['media']['page_info']['end_cursor']
+        body   = res['graphql']['user']
+        cursor = res['graphql']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor']
     except: raise
     
     return InstagramExploreResponse(data=body, cursor=cursor)
@@ -22,7 +22,7 @@ def user(user_name, max_id=None):
 def user_images(user_name, max_id=None):
     try:
         body, cursor = user(user_name, max_id)
-        images = [node['display_src'] for node in body['media']['nodes']]
+        images = [edge['node']['display_url'] for edge in body['edge_owner_to_timeline_media']['edges']]
     except: raise
     
     return InstagramExploreResponse(data=images, cursor=cursor)
@@ -35,8 +35,8 @@ def tag(tag_name, max_id=None):
     
     try:
         res = requests.get(url, params=payload).json()
-        body   = res['tag']
-        cursor = res['tag']['media']['page_info']['end_cursor']
+        body   = res['graphql']['hashtag']
+        cursor = res['graphql']['hashtag']['edge_hashtag_to_media']['page_info']['end_cursor']
     except: raise
     
     return InstagramExploreResponse(data=body, cursor=cursor)
@@ -45,7 +45,7 @@ def tag(tag_name, max_id=None):
 def tag_images(tag_name, max_id=None):
     try:
         body, cursor = tag(tag_name, max_id)
-        images = [node['display_src'] for node in body['media']['nodes']]
+        images = [edge['node']['display_url'] for edge in body['edge_hashtag_to_media']['edges']]
     except: raise
     
     return InstagramExploreResponse(data=images, cursor=cursor)

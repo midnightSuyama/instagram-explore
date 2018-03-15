@@ -31,8 +31,7 @@ User
 
    # Search user name
    res = ie.user('instagram')
-   print(res.data)                   # All
-   print(res.data['media']['nodes']) # Media list
+   print(res.data)
 
    # Next page
    data, cursor = ie.user('instagram', res.cursor)
@@ -49,8 +48,7 @@ Tag
 
    # Search tag name
    res = ie.tag('cat')
-   print(res.data)                   # All
-   print(res.data['media']['nodes']) # Media list
+   print(res.data)
 
    # Next page
    data, cursor = ie.tag('cat', res.cursor)
@@ -67,8 +65,7 @@ Location
 
    # Search location id
    res = ie.location('7226110')
-   print(res.data)                   # All
-   print(res.data['media']['nodes']) # Media list
+   print(res.data)
 
    # Next page
    data, cursor = ie.location('7226110', res.cursor)
